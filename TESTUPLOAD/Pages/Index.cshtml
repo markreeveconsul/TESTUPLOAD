@@ -1,0 +1,70 @@
+﻿@page
+@model ENTRYSYSTEM2.Pages.IndexModel
+@{
+    ViewData["Title"] = "CEC Library Entry System";
+}
+
+<link rel="stylesheet" href="/css/site.css">
+
+<header class="cec-header">
+    <div class="header-left">
+        <img src="/Logo/logo.png" class="cec-logo" />
+    </div>
+    <h1 class="cec-title">CEBU EASTERN COLLEGE</h1>
+    <div class="iphone-clock">
+        <div class="clock-time" id="clock"></div>
+        <div class="clock-date" id="date"></div>
+    </div>
+</header>
+
+<main>
+    <section class="control-panel">
+        <h2>Student Access Control</h2>
+        <form method="post">
+            <div class="input-group">
+                <input type="text" name="StudentName" class="input-field" placeholder="Enter Student Full Name" required />
+                <input type="text" name="StudentId" class="input-field" placeholder="Enter Student ID" required />
+                <button class="btn-in" name="Action" value="IN">Time In</button>
+                <button class="btn-out" name="Action" value="OUT">Time Out</button>
+            </div>
+        </form>
+        <p id="message">@Model.Message</p>
+    </section>
+
+    <section class="records-section">
+        <h2>Entry Records (@Model.Records.Count)</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>ID</th>
+                        <th>Action</th>
+                        <th>Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model.Records)
+                    {
+                        <tr>
+                            <td>@r.Name</td>
+                            <td>@r.StudentId</td>
+                            <td>
+                                <span class="status-badge @(r.Action == "IN" ? "status-in" : "status-out")">
+                                    @r.Action
+                                </span>
+                            </td>
+                            <td>@r.Timestamp</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © 2026 Cebu Eastern College Library Services
+</footer>
+
+<script src="/js/site.js"></script>

@@ -1,0 +1,26 @@
+﻿@page
+@model ENTRYSYSTEM2.Pages.Login.IndexModel
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="/css/login.css">
+
+<div class="login-container">
+    <img src="/Logo/logo.png" class="cec-logo" alt="CEC Logo">
+    <h1>CEC Library</h1>
+    <p>Library Entry System</p>
+
+    <form method="post">
+        <div class="input-group">
+            <input type="text" name="Username" class="input-field" placeholder="Username" required />
+            <input type="password" name="Password" class="input-field" placeholder="Password" required />
+            <button type="submit" class="login-btn">Login</button>
+        </div>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <p id="loginMessage" style="color:#dc3545">@Model.Message</p>
+    }
+</div>
